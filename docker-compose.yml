@@ -1,0 +1,9 @@
+version: 3
+services:
+  web:
+    build: .
+    command: python homebudget/manage.py runserver 0.0.0.0:8111
+    volumes:
+      - .:/application
+    ports:
+      - "8111:8111"
