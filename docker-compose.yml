@@ -1,5 +1,11 @@
 version: 3
 services:
+  db_make:
+    build: .
+    command: python homebudget/manage.py makemigrations
+  db_migrate:
+    build: .
+    command: python homebudget/manage.py migrate
   web:
     build: .
     command: python homebudget/manage.py runserver 0.0.0.0:8111
@@ -7,3 +13,6 @@ services:
       - .:/application
     ports:
       - "8111:8111"
+    depends_on:
+      - db_make
+      - db_migrate
